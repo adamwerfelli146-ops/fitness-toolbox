@@ -5,26 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Training Schedule</title>
 <link rel="stylesheet" href="style.css">
+
 <style>
-body {font-family:'Segoe UI', sans-serif; background:#111; color:#fff; margin:0; padding:20px;}
-.container {max-width:1200px; margin:0 auto; padding:20px; background:#1a1a1a; border-radius:15px; border:1px solid #333;}
-header {text-align:center; margin-bottom:30px;}
-header h1 {color:#e74c3c; font-size:2.5em;}
-header p {color:#bbb;}
-.calculator-card {background:#222; padding:25px; border-radius:15px; border:1px solid #e74c3c; max-width:600px; margin:0 auto;}
-label {display:block; margin-bottom:10px; font-weight:500;}
-select, button {width:100%; padding:12px; margin-top:5px; border-radius:8px; border:1px solid #333; background:#222; color:#fff; font-size:1em;}
-select:focus, button:focus {outline:none; border-color:#e74c3c; box-shadow:0 0 10px #e74c3c;}
-button {background:#e74c3c; cursor:pointer; margin-top:15px;}
-button:hover {background:#c0392b;}
-.schedule-table {width:100%; border-collapse:collapse; margin-top:30px;}
-.schedule-table th, .schedule-table td {border:1px solid #e74c3c; padding:25px 15px; text-align:center; vertical-align:middle; background:#222; color:#fff; font-size:1.2em;}
-.schedule-table th {background:#1a1a1a; font-size:1.3em;}
-.schedule-table td:hover {background:#2c2c2c;}
-.split-name {font-size:1.1em; color:#e74c3c; font-weight:bold;}
-.warning {background:#c0392b; color:#fff; padding:15px; border-radius:10px; margin-top:20px; text-align:center; font-weight:bold;}
+body {
+    font-family:'Segoe UI', sans-serif;
+    background:#111;
+    color:#fff;
+    margin:0;
+    padding:20px;
+}
+
+.container {
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px;
+    background:#1a1a1a;
+    border-radius:15px;
+    border:1px solid #333;
+}
+
+header {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1 {
+    color:#e74c3c;
+    font-size:2.5em;
+}
+
+header p {
+    color:#bbb;
+}
+
+.calculator-card {
+    background:#222;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #e74c3c;
+    max-width:600px;
+    margin:0 auto;
+}
+
+label {
+    display:block;
+    margin-bottom:10px;
+    font-weight:500;
+}
+
+select, button {
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#222;
+    color:#fff;
+    font-size:1em;
+}
+
+select:focus, button:focus {
+    outline:none;
+    border-color:#e74c3c;
+    box-shadow:0 0 10px #e74c3c;
+}
+
+button {
+    background:#e74c3c;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover {
+    background:#c0392b;
+}
+
+.table-wrapper {
+    width:100%;
+    overflow-x:auto;
+    margin-top:30px;
+}
+
+.schedule-table {
+    width:100%;
+    min-width:700px;
+    border-collapse:collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border:1px solid #e74c3c;
+    padding:25px 15px;
+    text-align:center;
+    background:#222;
+    color:#fff;
+    font-size:1.1em;
+}
+
+.schedule-table th {
+    background:#1a1a1a;
+    font-size:1.2em;
+}
+
+.schedule-table td:hover {
+    background:#2c2c2c;
+}
+
+.split-name {
+    font-size:1.05em;
+    color:#e74c3c;
+    font-weight:bold;
+}
+
+.warning {
+    background:#c0392b;
+    color:#fff;
+    padding:15px;
+    border-radius:10px;
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+@media (max-width: 600px) {
+    .schedule-table th,
+    .schedule-table td {
+        padding:15px 10px;
+        font-size:0.95em;
+    }
+}
 </style>
 </head>
+
 <body>
 <div class="container">
 <header>
@@ -85,63 +197,62 @@ function generateSplit(){
     }
 
     if(level === "beginner" && days > 3){
-        container.innerHTML = `<div class="warning">Beginners should train a maximum of 3 days/week to prevent injury and allow recovery.</div>`;
+        container.innerHTML = `<div class="warning">Beginners should train a maximum of 3 days/week.</div>`;
         return;
     }
 
     if(level === "intermediate" && days > 5){
-        container.innerHTML = `<div class="warning">Intermediate trainees should train a maximum of 5 days/week for proper recovery.</div>`;
+        container.innerHTML = `<div class="warning">Intermediate trainees should train a maximum of 5 days/week.</div>`;
         return;
     }
 
     const splits = {
         fullbody: {
-            2: ["Full Body", "Rest","Rest","Full Body","Rest", "Rest", "Rest"],
-            3: ["Full Body", "Rest", "Full Body", "Rest", "Full Body", "Rest", "Rest"],
-            4: ["Full Body", "Rest", "Full Body", "Rest", "Full Body", "Rest", "Full Body"],
+            2: ["Full Body","Rest","Rest","Full Body","Rest","Rest","Rest"],
+            3: ["Full Body","Rest","Full Body","Rest","Full Body","Rest","Rest"],
+            4: ["Full Body","Rest","Full Body","Rest","Full Body","Rest","Full Body"]
         },
         pushpull: {
-            2: ["Push", "Rest", "Rest", "Pull", "Rest", "Rest", "Rest"],
-            3: ["Push", "Rest", "Pull", "Rest", "Push/Pull", "Rest", "Rest"],
-            4: ["Push", "Pull", "Rest", "Push", "Pull", "Rest", "Rest"],
+            2: ["Push","Rest","Rest","Pull","Rest","Rest","Rest"],
+            3: ["Push","Rest","Pull","Rest","Push/Pull","Rest","Rest"],
+            4: ["Push","Pull","Rest","Push","Pull","Rest","Rest"]
         },
         pushpulllegs: {
-            3: ["Push", "Rest", "Pull", "Rest", "Legs", "Rest", "Rest"],
-            4: ["Push", "Rest", "Pull", "Legs", "Rest", "Push/Pull", "Rest"],
-            5: ["Push", "Pull", "Legs", "Rest", "Push", "Pull", "Rest"],
-            6: ["Push", "Pull", "Legs", "Push", "Pull", "Legs", "Rest"]
+            3: ["Push","Rest","Pull","Rest","Legs","Rest","Rest"],
+            4: ["Push","Rest","Pull","Legs","Rest","Push/Pull","Rest"],
+            5: ["Push","Pull","Legs","Rest","Push","Pull","Rest"],
+            6: ["Push","Pull","Legs","Push","Pull","Legs","Rest"]
         },
         upperlower: {
-            2: ["Upper", "Rest", "Rest", "Lower", "Rest", "Rest", "Rest"],
-            3: ["Upper", "Rest", "Lower", "Rest", "Upper", "Rest", "Rest"],
-            4: ["Upper", "Lower", "Rest", "Upper", "Lower", "Rest", "Rest"]
+            2: ["Upper","Rest","Rest","Lower","Rest","Rest","Rest"],
+            3: ["Upper","Rest","Lower","Rest","Upper","Rest","Rest"],
+            4: ["Upper","Lower","Rest","Upper","Lower","Rest","Rest"]
         },
         bro: {
-            3: ["Chest/Tris", "Back/Bis", "Rest", "Legs", "Rest", "Rest", "Rest"],
-            4: ["Chest/Tris", "Back/Bis", "Legs", "Rest", "Shoulders/Arms", "Rest", "Rest"],
-            5: ["Chest", "Back", "Legs","Rest", "Shoulders", "Arms","Rest"]
+            3: ["Chest/Tris","Back/Bis","Rest","Legs","Rest","Rest","Rest"],
+            4: ["Chest/Tris","Back/Bis","Legs","Rest","Shoulders/Arms","Rest","Rest"],
+            5: ["Chest","Back","Legs","Rest","Shoulders","Arms","Rest"]
         },
         arnold: {
-            3: ["Chest/Back", "Rest","Legs/Shoulders","Rest", "Arms",  "Rest", "Rest"],
-            4: ["Chest/Back", "Legs/Shoulders","Rest", "Arms", "Chest/Back",  "Rest", "Rest"],
-            5: ["Chest", "Back", "Legs","Rest", "Shoulders", "Arms",  "Rest"]
+            3: ["Chest/Back","Rest","Legs/Shoulders","Rest","Arms","Rest","Rest"],
+            4: ["Chest/Back","Legs/Shoulders","Rest","Arms","Chest/Back","Rest","Rest"],
+            5: ["Chest","Back","Legs","Rest","Shoulders","Arms","Rest"]
         }
     };
 
-    let weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-    let plan = splits[splitType][days];
+    const weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    const plan = splits[splitType][days];
+
     if(!plan){
         container.innerHTML = `<div class="warning">This split is not suitable for the selected number of days.</div>`;
         return;
     }
 
-    let table = '<table class="schedule-table"><tr>';
-    weekDays.forEach(day => table += `<th>${day}</th>`);
-    table += '</tr><tr>';
-    for(let i=0;i<7;i++){
-        table += `<td><span class="split-name">${plan[i]}</span></td>`;
-    }
-    table += '</tr></table>';
+    let table = `<div class="table-wrapper"><table class="schedule-table"><tr>`;
+    weekDays.forEach(d => table += `<th>${d}</th>`);
+    table += `</tr><tr>`;
+    plan.forEach(p => table += `<td><span class="split-name">${p}</span></td>`);
+    table += `</tr></table></div>`;
 
     container.innerHTML = table;
 }
