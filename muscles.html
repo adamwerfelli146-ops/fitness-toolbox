@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muscle Targeting</title>
 <link rel="stylesheet" href="style.css">
+<style>
+.responsive-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -85,7 +94,6 @@ const exercises = {
     upper_abs: ["Crunches", "Cable Crunch"],
     lower_abs: ["Leg Raise", "Reverse Crunch"],
     obliques: ["Side Plank", "Russian Twist"]
-    
 };
 
 const muscleImages = {
@@ -179,7 +187,7 @@ function showExercises() {
 
     container.innerHTML = `
         <div class="result-card" style="text-align:center">
-            ${imgSrc ? `<img src="${imgSrc}" alt="${key.replace(/_/g,' ')}" style="max-width:300px; border-radius:10px; margin-bottom:15px;">` : ""}
+            ${imgSrc ? `<img src="${imgSrc}" alt="${key.replace(/_/g,' ')}" class="responsive-img">` : ""}
             <h3>${key.replace(/_/g,' ')}</h3>
 
             <p style="font-size:0.9em; opacity:0.8; margin-bottom:10px;">
