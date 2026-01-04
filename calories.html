@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calories Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Calories & Macros Calculator</h1>
+    </header>
+
+    <div class="calculator-card">
+        <div class="form-container">
+            <label>Age:
+                <input type="number" id="age" min="10" max="100" placeholder="Years">
+            </label>
+            <label>Height (cm):
+                <input type="number" id="height" min="100" max="250" placeholder="Centimeters">
+            </label>
+            <label>Weight (kg):
+                <input type="number" id="weight" min="30" max="300" placeholder="Kilograms">
+            </label>
+            <label>Activity Level:
+                <select id="activity">
+                    <option value="1.2">Sedentary</option>
+                    <option value="1.375">Lightly active</option>
+                    <option value="1.55">Moderately active</option>
+                    <option value="1.725">Very active</option>
+                    <option value="1.9">Extra active</option>
+                </select>
+            </label>
+            <label>Goal:
+                <select id="goal">
+                    <option value="maintain">Maintain</option>
+                    <option value="bulk">Bulk</option>
+                    <option value="cut">Cut</option>
+                </select>
+            </label>
+            <button onclick="calculateCalories()">Calculate</button>
+        </div>
+
+        <div id="result" class="result-card">
+            <p>Results will appear here after calculation.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculateCalories() {
+    const age = Number(document.getElementById("age").value);
+    const height = Number(document.getElementById("height").value);
+    const weight = Number(document.getElementById("weight").value);
+    const activity = Number(document.getElementById("activity").value);
+    const goal = document.getElementById("goal").value;
+
+    if(!age || !height || !weight){
+        alert("Please fill all fields!");
+        return;
+    }
+
+    // BMR for men (can be extended later for gender selection)
+    let bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    let tdee = bmr * activity;
+
+    let calories = tdee;
+    if(goal === "bulk") calories += 300;
+    if(goal === "cut") calories -= 300;
+
+    let protein = Math.round(weight * 2);
+    let fat = Math.round(weight * 0.8);
+    let carbs = Math.round((calories - (protein*4 + fat*9))/4);
+
+    document.getElementById("result").innerHTML = `
+        <h2>Results:</h2>
+        <div class="macro-card"><p><strong>Calories:</strong> ${Math.round(calories)} kcal/day</p></div>
+        <div class="macro-card"><p><strong>Protein:</strong> ${protein} g/day</p></div>
+        <div class="macro-card"><p><strong>Fat:</strong> ${fat} g/day</p></div>
+        <div class="macro-card"><p><strong>Carbs:</strong> ${carbs} g/day</p></div>
+    `;
+}
+</script>
+</body>
+</html>

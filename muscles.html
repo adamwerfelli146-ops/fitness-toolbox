@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muscle Targeting</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Muscle Group Targeting</h1>
+    <p>Select a muscle group to see targeted exercises and images.</p>
+</header>
+
+<div class="calculator-card">
+    <div class="form-container">
+        <label for="mainMuscle">Main Muscle Group</label>
+        <select id="mainMuscle">
+            <option value="">Select muscle</option>
+            <option value="chest">Chest</option>
+            <option value="shoulders">Shoulders</option>
+            <option value="arms">Arms</option>
+            <option value="back">Back</option>
+            <option value="legs">Legs</option>
+            <option value="abs">Abs</option>
+        </select>
+
+        <label for="subMuscle">Sub Muscle Group</label>
+        <select id="subMuscle" disabled>
+            <option value="">Select sub-muscle</option>
+        </select>
+
+        <label for="subSubMuscle">Specific Muscle</label>
+        <select id="subSubMuscle" disabled>
+            <option value="">Select specific muscle</option>
+        </select>
+
+        <button onclick="showExercises()">Show Exercises</button>
+    </div>
+</div>
+
+<div id="exerciseInfo" style="margin-top:20px;"></div>
+</div>
+
+<script>
+const subMuscles = {
+    chest: ["Upper Chest", "Lower Chest"],
+    shoulders: ["Front Delts", "Side Delts", "Rear Delts"],
+    arms: ["Biceps", "Triceps", "Forearms"],
+    back: ["Upper Back", "Middle Back", "Lats", "Lower Back"],
+    legs: ["Quads", "Hamstrings", "Calves", "Glutes"],
+    abs: ["Upper Abs", "Lower Abs", "Obliques"]
+};
+
+const subSubMuscles = {
+    biceps: ["Long Head", "Short Head", "Brachialis"],
+    triceps: ["Long Head", "Lateral Head", "Medial Head"],
+    forearms: ["Flexors", "Extensors", "Brachioradialis"]
+};
+
+const exercises = {
+    upper_chest: ["Incline Bench Press", "Incline Dumbbell Fly"],
+    lower_chest: ["Decline Bench Press", "Cable Chest Dip"],
+    front_delts: ["Front Dumbbell Raise", "Overhead Press"],
+    side_delts: ["Lateral Raise", "Arnold Press"],
+    rear_delts: ["Rear Delt Fly", "Face Pull"],
+    biceps_long_head: ["Barbell Curl", "Incline Dumbbell Curl"],
+    biceps_short_head: ["Concentration Curl", "Preacher Curl"],
+    brachialis: ["Hammer Curl", "Reverse Curl"],
+    triceps_long_head: ["Overhead Triceps Extension", "Close Grip Bench Press"],
+    triceps_lateral_head: ["Triceps Pushdown", "Overhead Extension"],
+    triceps_medial_head: ["Triceps Kickback", "Cable Pressdown"],
+    flexors: ["Wrist Curl", "Farmer's Carry"],
+    extensors: ["Reverse Wrist Curl", "Wrist Roller"],
+    brachioradialis: ["Zottman Curl","Neutral-Grip Pull-Up"],
+    upper_back: ["Barbell Shrugs", "Dumbbell Shrugs"],
+    middle_back: ["T-Bar Row", "Seated Cable Row"],
+    lats: ["Lat Pulldown", "Pull-Up", "Single Arm Row"],
+    lower_back: ["Deadlift", "Hyperextensions"],
+    quads: ["Squat", "Leg Press"],
+    hamstrings: ["Romanian Deadlift", "Hamstring Curl"],
+    calves: ["Standing Calf Raise", "Seated Calf Raise"],
+    glutes: ["Hip Thrust", "Glute Kickback"],
+    upper_abs: ["Crunches", "Cable Crunch"],
+    lower_abs: ["Leg Raise", "Reverse Crunch"],
+    obliques: ["Side Plank", "Russian Twist"]
+    
+};
+
+const muscleImages = {
+    upper_chest: "images/upper.jpg",
+    lower_chest: "images/lower.jpg",
+    front_delts: "images/delt.png",
+    side_delts: "images/delt.png",
+    rear_delts: "images/delt.png",
+    biceps_long_head: "images/bi.jpg",
+    biceps_short_head: "images/bi.jpg",
+    brachialis: "images/bi.jpg",
+    triceps_long_head: "images/tri.jpg",
+    triceps_lateral_head: "images/tri.jpg",
+    triceps_medial_head: "images/tri.jpg",
+    flexors: "images/forearms.jpg",
+    extensors: "images/forearms.jpg",
+    brachioradialis: "images/forearms.jpg",
+    upper_back: "images/trapz.jpg",
+    middle_back: "images/middle.png",
+    lats: "images/lats.png",
+    lower_back: "images/lowerback.png",
+    quads: "images/legs.jpg",
+    hamstrings: "images/legs.jpg",
+    calves: "images/legs.jpg",
+    glutes: "images/legs.jpg",
+    upper_abs: "images/abs.jpg",
+    lower_abs: "images/abs.jpg",
+    obliques: "images/obliques.png"
+};
+
+document.getElementById("mainMuscle").addEventListener("change", function() {
+    const main = this.value;
+    const subSelect = document.getElementById("subMuscle");
+    const subSubSelect = document.getElementById("subSubMuscle");
+    subSelect.innerHTML = '<option value="">Select sub-muscle</option>';
+    subSubSelect.innerHTML = '<option value="">Select specific muscle</option>';
+    subSubSelect.disabled = true;
+    if(main && subMuscles[main]){
+        subMuscles[main].forEach(sub => {
+            const option = document.createElement("option");
+            option.value = sub.toLowerCase().replace(/\s/g,'_');
+            option.textContent = sub;
+            subSelect.appendChild(option);
+        });
+        subSelect.disabled = false;
+    } else {
+        subSelect.disabled = true;
+    }
+});
+
+document.getElementById("subMuscle").addEventListener("change", function() {
+    const sub = this.value;
+    const subSubSelect = document.getElementById("subSubMuscle");
+    subSubSelect.innerHTML = '<option value="">Select specific muscle</option>';
+    if(sub && subSubMuscles[sub]){
+        subSubMuscles[sub].forEach(subSub => {
+            const option = document.createElement("option");
+            option.value = subSub.toLowerCase().replace(/\s/g,'_');
+            option.textContent = subSub;
+            subSubSelect.appendChild(option);
+        });
+        subSubSelect.disabled = false;
+    } else {
+        subSubSelect.disabled = true;
+    }
+});
+
+function showExercises() {
+    const subSub = document.getElementById("subSubMuscle").value;
+    const sub = document.getElementById("subMuscle").value;
+    const container = document.getElementById("exerciseInfo");
+    if(!subSub && !sub){
+        alert("Select sub or specific muscle group");
+        container.innerHTML = "";
+        return;
+    }
+
+    let key;
+    if(subSub){
+        if(subSub.includes("long_head") || subSub.includes("short_head") || subSub.includes("lateral_head") || subSub.includes("medial_head")){
+            key = `${sub}_${subSub}`; 
+        } else {
+            key = subSub;
+        }
+    } else {
+        key = sub;
+    }
+
+    const imgSrc = muscleImages[key] || "";
+    const exList = exercises[key] || ["No exercises available"];
+
+    container.innerHTML = `
+        <div class="result-card" style="text-align:center">
+            ${imgSrc ? `<img src="${imgSrc}" alt="${key.replace(/_/g,' ')}" style="max-width:300px; border-radius:10px; margin-bottom:15px;">` : ""}
+            <h3>${key.replace(/_/g,' ')}</h3>
+
+            <p style="font-size:0.9em; opacity:0.8; margin-bottom:10px;">
+                Click the ▶ icon next to an exercise to watch its video tutorial on YouTube.
+            </p>
+
+            <ul style="list-style:none; padding-left:0;">
+                ${exList.map(e =>
+                    `<li class="macro-card">
+                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(e)}" target="_blank" style="color:#e74c3c; text-decoration:none; margin-right:8px;">&#9658;</a>
+                        ${e}
+                    </li>`).join("")}
+            </ul>
+        </div>
+    `;
+}
+</script>
+</body>
+</html>

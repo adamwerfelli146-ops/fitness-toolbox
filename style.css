@@ -1,0 +1,251 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:'Segoe UI', sans-serif;
+    background:#111;
+    color:#fff;
+    padding:20px;
+}
+
+.container {
+    max-width:1200px;
+    margin:0 auto;
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:15px;
+    border:1px solid #333;
+}
+
+header {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1 {
+    font-size:2.5em;
+    color:#e74c3c;
+}
+
+header p {
+    color:#bbb;
+}
+
+.landing-grid {
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.landing-card {
+    background:#222;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    flex:1;
+    max-width:400px;
+    text-decoration:none;
+    color:#fff;
+    transition:all 0.3s ease;
+    border:1px solid #e74c3c;
+}
+
+.landing-card:hover {
+    transform:translateY(-5px);
+    background:#2c2c2c;
+    box-shadow:0 5px 20px #e74c3c;
+}
+
+.landing-icon {
+    font-size:3em;
+    margin-bottom:15px;
+}
+
+.calculator-card {
+    max-width:500px;
+    margin:0 auto 50px;
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:15px;
+    border:1px solid #e74c3c;
+    box-shadow:0 10px 25px rgba(231,76,60,0.4);
+}
+
+.form-container label {
+    display:block;
+    margin-bottom:15px;
+    font-weight:500;
+    color:#fff;
+}
+
+input, select {
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#222;
+    color:#fff;
+    font-size:1em;
+    margin-top:5px;
+    transition:all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color:#e74c3c;
+    box-shadow:0 0 10px #e74c3c;
+    outline:none;
+}
+
+button {
+    width:100%;
+    padding:15px;
+    background:#e74c3c;
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    font-size:1.1em;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:15px;
+    transition:all 0.3s ease;
+}
+
+button:hover {
+    background:#c0392b;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px #c0392b;
+}
+
+.result-card {
+    margin-top:25px;
+    padding:20px;
+    background:#222;
+    border-radius:10px;
+    border:1px solid #e74c3c;
+    box-shadow:0 8px 20px rgba(231,76,60,0.3);
+    transition:all 0.5s ease;
+    text-align:center;
+}
+
+.macro-card {
+    background:#1c1c1c;
+    padding:12px 15px;
+    border-radius:8px;
+    margin-bottom:10px;
+    border:1px solid #e74c3c;
+    box-shadow:0 4px 10px rgba(231,76,60,0.2);
+    transition:transform 0.3s ease;
+}
+
+.macro-card:hover {
+    transform:translateY(-2px);
+}
+
+.muscle-container {
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.muscle-image {
+    flex:1;
+    max-width:400px;
+    position:relative;
+}
+
+.muscle-image img {
+    width:100%;
+    border-radius:10px;
+}
+
+.muscle-overlay {
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background:rgba(255,0,0,0.3);
+    pointer-events:none;
+    border-radius:10px;
+}
+
+.muscle-list {
+    flex:1;
+    max-width:400px;
+}
+
+.muscle-list ul {
+    list-style:none;
+    padding:0;
+}
+
+.muscle-list li {
+    padding:10px;
+    background:#222;
+    margin-bottom:10px;
+    border-radius:10px;
+    cursor:pointer;
+    border:1px solid #e74c3c;
+    transition:all 0.3s ease;
+}
+
+.muscle-list li:hover {
+    background:#2c2c2c;
+}
+
+#exerciseInfo {
+    margin-top:20px;
+    max-width:400px;
+    margin-left:auto;
+    margin-right:auto;
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #e74c3c;
+    box-shadow:0 8px 20px rgba(231,76,60,0.3);
+}
+
+@media(max-width:768px){
+    .landing-grid, .muscle-container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .landing-card, .muscle-image, .muscle-list, .calculator-card{
+        max-width:100%;
+    }
+
+.schedule-table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+.schedule-cell {
+    text-align:center;
+    padding:20px 10px;
+    background:#1c1c1c;
+    border:1px solid #e74c3c;
+    border-radius:10px;
+}
+
+.day-letter {
+    font-size:1.2em;
+    font-weight:600;
+    color:#e74c3c;
+}
+
+.day-number {
+    font-size:2em;
+    font-weight:700;
+    margin:5px 0;
+}
+
+.day-workout {
+    font-size:0.95em;
+    color:#ddd;
+}
+
+}
