@@ -66,7 +66,7 @@ Zero tracking, no cookies, no analytics
 All data stays on your device
 Loads instantly — under 50KB total (HTML + CSS + JS)
 
----
 
 >  — “Results are earned through discipline, not motivation. Show up, follow the plan, repeat.”
 — **Fitness Toolbox**
+
