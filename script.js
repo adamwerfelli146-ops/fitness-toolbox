@@ -1,4 +1,3 @@
-// Calorie Calculation
 document.getElementById("calorieForm").addEventListener("submit", function(e){
     e.preventDefault();
     
@@ -6,17 +5,12 @@ document.getElementById("calorieForm").addEventListener("submit", function(e){
     let height = Number(document.getElementById("height").value);
     let weight = Number(document.getElementById("weight").value);
     let activity = Number(document.getElementById("activity").value);
-
-    // Simple BMR formula (Mifflin-St Jeor for demo)
     let bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     let maintenance = Math.round(bmr * activity);
-
     document.getElementById("calorieResult").innerHTML = `
         Your maintenance calories: <strong>${maintenance} kcal/day</strong>
     `;
 });
-
-// Muscle Exercises Data
 const exercises = {
     chest: ["Bench Press", "Push-Ups", "Chest Fly"],
     back: ["Pull-Ups", "Lat Pulldown", "Deadlift"],
@@ -25,8 +19,6 @@ const exercises = {
     shoulders: ["Shoulder Press", "Lateral Raises", "Front Raises"],
     abs: ["Crunches", "Plank", "Leg Raises"]
 };
-
-// Muscle Images
 const muscleImages = {
     chest: "images/body_chest.png",
     back: "images/body_back.png",
@@ -36,7 +28,6 @@ const muscleImages = {
     abs: "images/body_abs.png"
 };
 
-// Muscle Selection
 const buttons = document.querySelectorAll(".muscle-buttons button");
 const bodyImage = document.getElementById("bodyImage");
 const exerciseList = document.getElementById("exerciseList");
