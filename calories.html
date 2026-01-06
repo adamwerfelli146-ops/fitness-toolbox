@@ -5,64 +5,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calories Calculator</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    background:#111;
+    color:#fff;
+    font-family:'Segoe UI', sans-serif;
+    margin:0;
+    padding:20px;
+}
+
+.container {
+    max-width:900px;
+    margin:auto;
+}
+
+header {
+    text-align:center;
+    margin-bottom:25px;
+}
+
+header h1 {
+    color:#e74c3c;
+}
+
+.calculator-card {
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #333;
+}
+
+.form-container {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+label {
+    display:flex;
+    flex-direction:column;
+    font-size:0.9rem;
+}
+
+input, select {
+    margin-top:6px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#222;
+    color:#fff;
+}
+
+input:focus, select:focus {
+    outline:none;
+    border-color:#e74c3c;
+}
+
+button {
+    grid-column:span 2;
+    margin-top:10px;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    background:#e74c3c;
+    color:#fff;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#c0392b;
+}
+
+.result-card {
+    margin-top:25px;
+    padding:20px;
+    border-radius:12px;
+    background:#222;
+    border:1px solid #e74c3c;
+}
+
+.macro-card {
+    background:#1a1a1a;
+    padding:12px;
+    border-radius:8px;
+    margin-top:10px;
+    text-align:center;
+}
+
+@media (max-width:600px) {
+    .form-container {
+        grid-template-columns:1fr;
+    }
+
+    button {
+        grid-column:span 1;
+    }
+}
+</style>
 </head>
+
 <body>
 <div class="container">
-    <header>
-        <h1>Calories & Macros Calculator</h1>
-    </header>
+<header>
+    <h1>Calories & Macros Calculator</h1>
+</header>
 
-    <div class="calculator-card">
-        <div class="form-container">
-            <label>Age:
-                <input type="number" id="age" min="10" max="100" placeholder="Years">
-            </label>
-            <label>Height (cm):
-                <input type="number" id="height" min="100" max="250" placeholder="Centimeters">
-            </label>
-            <label>Weight (kg):
-                <input type="number" id="weight" min="30" max="300" placeholder="Kilograms">
-            </label>
-            <label>Activity Level:
-                <select id="activity">
-                    <option value="1.2">Sedentary</option>
-                    <option value="1.375">Lightly active</option>
-                    <option value="1.55">Moderately active</option>
-                    <option value="1.725">Very active</option>
-                    <option value="1.9">Extra active</option>
-                </select>
-            </label>
-            <label>Goal:
-                <select id="goal">
-                    <option value="maintain">Maintain</option>
-                    <option value="bulk">Bulk</option>
-                    <option value="cut">Cut</option>
-                </select>
-            </label>
-            <button onclick="calculateCalories()">Calculate</button>
-        </div>
+<div class="calculator-card">
+    <div class="form-container">
 
-        <div id="result" class="result-card">
-            <p>Results will appear here after calculation.</p>
-        </div>
+        <label>Gender
+            <select id="gender">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </label>
+
+        <label>Age
+            <input type="number" id="age" min="10" max="100" placeholder="Years">
+        </label>
+
+        <label>Height (cm)
+            <input type="number" id="height" min="100" max="250" placeholder="Centimeters">
+        </label>
+
+        <label>Weight (kg)
+            <input type="number" id="weight" min="30" max="300" placeholder="Kilograms">
+        </label>
+
+        <label>Activity Level
+            <select id="activity">
+                <option value="1.2">Sedentary</option>
+                <option value="1.375">Lightly active</option>
+                <option value="1.55">Moderately active</option>
+                <option value="1.725">Very active</option>
+                <option value="1.9">Extra active</option>
+            </select>
+        </label>
+
+        <label>Goal
+            <select id="goal">
+                <option value="maintain">Maintain</option>
+                <option value="bulk">Bulk</option>
+                <option value="cut">Cut</option>
+            </select>
+        </label>
+
+        <button onclick="calculateCalories()">Calculate</button>
     </div>
+
+    <div id="result" class="result-card">
+        <p style="opacity:0.7;text-align:center;">Results will appear here after calculation.</p>
+    </div>
+</div>
 </div>
 
 <script>
 function calculateCalories() {
+    const gender = document.getElementById("gender").value;
     const age = Number(document.getElementById("age").value);
     const height = Number(document.getElementById("height").value);
     const weight = Number(document.getElementById("weight").value);
     const activity = Number(document.getElementById("activity").value);
     const goal = document.getElementById("goal").value;
 
-    if(!age || !height || !weight){
-        alert("Please fill all fields!");
+    if(!gender || !age || !height || !weight){
+        alert("Please fill all fields");
         return;
     }
 
-    // BMR for men (can be extended later for gender selection)
-    let bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    let bmr;
+    if(gender === "male"){
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+
     let tdee = bmr * activity;
 
     let calories = tdee;
@@ -71,14 +191,14 @@ function calculateCalories() {
 
     let protein = Math.round(weight * 2);
     let fat = Math.round(weight * 0.8);
-    let carbs = Math.round((calories - (protein*4 + fat*9))/4);
+    let carbs = Math.round((calories - (protein*4 + fat*9)) / 4);
 
     document.getElementById("result").innerHTML = `
-        <h2>Results:</h2>
-        <div class="macro-card"><p><strong>Calories:</strong> ${Math.round(calories)} kcal/day</p></div>
-        <div class="macro-card"><p><strong>Protein:</strong> ${protein} g/day</p></div>
-        <div class="macro-card"><p><strong>Fat:</strong> ${fat} g/day</p></div>
-        <div class="macro-card"><p><strong>Carbs:</strong> ${carbs} g/day</p></div>
+        <h2 style="text-align:center;color:#e74c3c;">Your Daily Targets</h2>
+        <div class="macro-card"><strong>Calories</strong><br>${Math.round(calories)} kcal</div>
+        <div class="macro-card"><strong>Protein</strong><br>${protein} g</div>
+        <div class="macro-card"><strong>Fat</strong><br>${fat} g</div>
+        <div class="macro-card"><strong>Carbs</strong><br>${carbs} g</div>
     `;
 }
 </script>
