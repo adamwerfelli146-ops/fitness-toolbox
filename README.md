@@ -23,7 +23,8 @@
 - View anatomical reference images for each muscle group
 - Get exercise suggestions with one click
 - Each exercise links to a YouTube search for video tutorials (▶ icon)
- **3. Training Schedule Generator**: 
+
+**3. Training Schedule Generator**: 
 
 - Choose your training level (Beginner / Intermediate / Advanced)
 - Select days per week (2–6) and split type:
