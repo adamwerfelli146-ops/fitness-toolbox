@@ -10,20 +10,20 @@
 
 ## ✨ Features
 
-- **1. Calories & Macros Calculator**
+**1. Calories & Macros Calculator**
 
 - Calculate your maintenance, bulking (+300 kcal), or cutting (–300 kcal) calorie targets
 - Get personalized macronutrient breakdowns (protein, carbs, fat) based on body weight
 - Uses the Mifflin-St Jeor equation (BMR) + activity multiplier for accuracy
 - Works accurately for all genders (automatically adapts calculation)
 
-- **2. Muscle Group Targeting**: 
+ **2. Muscle Group Targeting**: 
 
 - Browse exercises by main muscle → sub-muscle → specific muscle head
 - View anatomical reference images for each muscle group
 - Get exercise suggestions with one click
 - Each exercise links to a YouTube search for video tutorials (▶ icon)
-- **3. Training Schedule Generator**: 
+ **3. Training Schedule Generator**: 
 
 - Choose your training level (Beginner / Intermediate / Advanced)
 - Select days per week (2–6) and split type:
