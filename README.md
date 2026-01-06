@@ -10,6 +10,7 @@
 
 ## ✨ Features
 - **1. Calories & Macros Calculator**
+  
 Calculate your maintenance, bulking (+300 kcal), or cutting (–300 kcal) calorie targets
 Get personalized macronutrient breakdowns (protein, carbs, fat) based on body weight
 Uses the Mifflin-St Jeor equation (BMR) + activity multiplier for accuracy
